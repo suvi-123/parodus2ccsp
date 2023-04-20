@@ -58,7 +58,8 @@ rbusError_t setTraceContext(char* traceContext[])
 			    WalInfo("Invoked setTraceContext function with value traceParent - %s, traceState - %s\n", traceContext[0], traceContext[1]);    
                             ret = rbusHandle_SetTraceContextFromString(rbus_handle, traceContext[0], traceContext[1]);
                             if(ret == RBUS_ERROR_SUCCESS) {
-                                  WalPrint("SetTraceContext request success\n");
+                                  WalInfo("SetTraceContext request success\n");
+				  WalInfo("After Invoking setTraceContext function with value traceParent - %s, traceState - %s\n", traceContext[0], traceContext[1]);
                             }
                              else {
                                    WalError("SetTraceContext request failed with error code - %d\n", ret);

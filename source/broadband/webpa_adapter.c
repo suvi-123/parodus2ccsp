@@ -58,7 +58,7 @@ void processRequest(char *reqPayload,char *transactionId, char **resPayload, hea
 	char *dbCMC = NULL;
 	char newCMC[32]={'\0'};
 	
-        WalPrint("************** processRequest *****************\n");
+        WalInfo("************** processRequest *****************\n");
         
         wdmp_parse_request(reqPayload,&reqObj);
         (req_headers != NULL && req_headers->headers[0] != NULL && req_headers->headers[1] != NULL) ? WalInfo("transactionId : %s, traceParent : %s, traceState : %s in request\n", transactionId, req_headers->headers[0], req_headers->headers[1]) : WalInfo("transactionId in request: %s\n", transactionId);
@@ -116,11 +116,13 @@ void processRequest(char *reqPayload,char *transactionId, char **resPayload, hea
                                         }
                                 }
                                 
-				WalPrint("Before setTraceContext in WEBPA GET request\n");
+				WalInfo("Before setTraceContext in WEBPA GET request\n");
 				if(req_headers != NULL && req_headers->headers[0] != NULL && req_headers->headers[1] != NULL) {
+					WalInfo("Before set context in processRequest function\n");
                                         setTraceContext(req_headers->headers);
+					WalInfo("After set context in processRequest function\n");
 				}
-                                WalPrint("After setTraceContext in WEBPA GET request\n");
+                                WalInfo("After setTraceContext in WEBPA GET request\n");
                                 
                                 if(error != 1)
                                 {
